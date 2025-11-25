@@ -30,7 +30,10 @@ def create_server(port: int = 5222, host: str = '127.0.0.1', debug: bool = False
     """Create and configure MCP server."""
     
     # Get server secret from environment (optional)
+    # Treat empty string as None to disable authentication
     server_secret = os.getenv('MCP_SERVER_SECRET', None)
+    if server_secret == '':
+        server_secret = None
     
     # Create server
     mcp = NorthMCPServer(
