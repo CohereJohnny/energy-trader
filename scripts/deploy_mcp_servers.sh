@@ -53,22 +53,29 @@ fi
 cd "$CFTC_COT_DIR"
 chown -R ubuntu:ubuntu "$CFTC_COT_DIR"
 
-# Create virtual environment if it doesn't exist
+# Create virtual environment if it doesn't exist (use Python 3.11+)
 if [ ! -d ".venv" ]; then
     echo "Creating Python virtual environment..."
-    sudo -u ubuntu python3 -m venv .venv
+    # Try Python 3.11 first, fallback to 3.12, then 3.10
+    if command -v python3.11 &> /dev/null; then
+        sudo -u ubuntu python3.11 -m venv .venv
+    elif command -v python3.12 &> /dev/null; then
+        sudo -u ubuntu python3.12 -m venv .venv
+    else
+        echo "⚠️  Warning: Python 3.11+ not found, using python3 (may fail if < 3.11)"
+        sudo -u ubuntu python3 -m venv .venv
+    fi
 fi
 
-# Install dependencies
+# Install dependencies (use HTTPS instead of SSH for GitHub)
 echo "Installing dependencies..."
-sudo -u ubuntu .venv/bin/pip install --upgrade pip
-sudo -u ubuntu .venv/bin/pip install -r requirements.txt
+sudo -u ubuntu bash -c "cd $CFTC_COT_DIR && source .venv/bin/activate && pip install --upgrade pip && pip install git+https://github.com/cohere-ai/north-mcp-python-sdk.git && pip install psycopg2-binary python-dotenv"
 
 # Create .env file if it doesn't exist
 if [ ! -f ".env" ]; then
     echo "Creating .env file..."
     sudo -u ubuntu cp .env.example .env
-    cat >> .env << EOF
+    sudo -u ubuntu bash -c "cat >> .env << 'ENVEOF'
 
 # Production settings
 DB_HOST=localhost
@@ -77,7 +84,7 @@ DB_NAME=energy_trader
 DB_USER=postgres
 DB_PASSWORD=postgres
 MCP_SERVER_PORT=5223
-EOF
+ENVEOF"
     chmod 600 .env
     chown ubuntu:ubuntu .env
     echo "⚠️  IMPORTANT: Review and update DB_PASSWORD in $CFTC_COT_DIR/.env"
@@ -94,22 +101,29 @@ fi
 cd "$FUTURES_PRICES_DIR"
 chown -R ubuntu:ubuntu "$FUTURES_PRICES_DIR"
 
-# Create virtual environment if it doesn't exist
+# Create virtual environment if it doesn't exist (use Python 3.11+)
 if [ ! -d ".venv" ]; then
     echo "Creating Python virtual environment..."
-    sudo -u ubuntu python3 -m venv .venv
+    # Try Python 3.11 first, fallback to 3.12, then 3.10
+    if command -v python3.11 &> /dev/null; then
+        sudo -u ubuntu python3.11 -m venv .venv
+    elif command -v python3.12 &> /dev/null; then
+        sudo -u ubuntu python3.12 -m venv .venv
+    else
+        echo "⚠️  Warning: Python 3.11+ not found, using python3 (may fail if < 3.11)"
+        sudo -u ubuntu python3 -m venv .venv
+    fi
 fi
 
-# Install dependencies
+# Install dependencies (use HTTPS instead of SSH for GitHub)
 echo "Installing dependencies..."
-sudo -u ubuntu .venv/bin/pip install --upgrade pip
-sudo -u ubuntu .venv/bin/pip install -r requirements.txt
+sudo -u ubuntu bash -c "cd $FUTURES_PRICES_DIR && source .venv/bin/activate && pip install --upgrade pip && pip install git+https://github.com/cohere-ai/north-mcp-python-sdk.git && pip install psycopg2-binary python-dotenv"
 
 # Create .env file if it doesn't exist
 if [ ! -f ".env" ]; then
     echo "Creating .env file..."
     sudo -u ubuntu cp .env.example .env
-    cat >> .env << EOF
+    sudo -u ubuntu bash -c "cat >> .env << 'ENVEOF'
 
 # Production settings
 DB_HOST=localhost
@@ -118,7 +132,7 @@ DB_NAME=energy_trader
 DB_USER=postgres
 DB_PASSWORD=postgres
 MCP_SERVER_PORT=5224
-EOF
+ENVEOF"
     chmod 600 .env
     chown ubuntu:ubuntu .env
     echo "⚠️  IMPORTANT: Review and update DB_PASSWORD in $FUTURES_PRICES_DIR/.env"
@@ -142,8 +156,8 @@ Environment="PATH=$CFTC_COT_DIR/.venv/bin:/usr/local/bin:/usr/bin:/bin"
 Environment="PYTHONUNBUFFERED=1"
 EnvironmentFile=$CFTC_COT_DIR/.env
 
-# Start server on port 5223 with streamable-http transport
-ExecStart=$CFTC_COT_DIR/.venv/bin/python3 $CFTC_COT_DIR/server.py --transport streamable-http --port 5223
+# Start server on port 5223 with streamable-http transport (bind to all interfaces)
+ExecStart=$CFTC_COT_DIR/.venv/bin/python3 $CFTC_COT_DIR/server.py --transport streamable-http --port 5223 --host 0.0.0.0
 
 # Restart policy
 Restart=always
@@ -186,8 +200,8 @@ Environment="PATH=$FUTURES_PRICES_DIR/.venv/bin:/usr/local/bin:/usr/bin:/bin"
 Environment="PYTHONUNBUFFERED=1"
 EnvironmentFile=$FUTURES_PRICES_DIR/.env
 
-# Start server on port 5224 with streamable-http transport
-ExecStart=$FUTURES_PRICES_DIR/.venv/bin/python3 $FUTURES_PRICES_DIR/server.py --transport streamable-http --port 5224
+# Start server on port 5224 with streamable-http transport (bind to all interfaces)
+ExecStart=$FUTURES_PRICES_DIR/.venv/bin/python3 $FUTURES_PRICES_DIR/server.py --transport streamable-http --port 5224 --host 0.0.0.0
 
 # Restart policy
 Restart=always

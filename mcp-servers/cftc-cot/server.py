@@ -27,7 +27,7 @@ from tools import (
 load_dotenv()
 
 
-def create_server(port: int = 5223, debug: bool = False):
+def create_server(port: int = 5223, host: str = '127.0.0.1', debug: bool = False):
     """Create and configure MCP server."""
     
     # Get server secret from environment (optional)
@@ -37,6 +37,7 @@ def create_server(port: int = 5223, debug: bool = False):
     mcp = NorthMCPServer(
         name="CFTC COT",
         port=port,
+        host=host,
         server_secret=server_secret,
         debug=debug
     )
@@ -170,17 +171,18 @@ def main():
         help='Transport type (default: streamable-http)'
     )
     parser.add_argument('--port', type=int, default=5223, help='Server port (default: 5223)')
+    parser.add_argument('--host', type=str, default='127.0.0.1', help='Server host (default: 127.0.0.1, use 0.0.0.0 for all interfaces)')
     parser.add_argument('--debug', action='store_true', help='Enable debug mode')
     
     args = parser.parse_args()
     
     # Create server
-    server = create_server(port=args.port, debug=args.debug)
+    server = create_server(port=args.port, host=args.host, debug=args.debug)
     
     # Start server
     if args.transport == 'streamable-http':
-        print(f"Starting CFTC COT MCP Server on port {args.port}...")
-        print(f"Server endpoint: http://localhost:{args.port}/mcp")
+        print(f"Starting CFTC COT MCP Server on {args.host}:{args.port}...")
+        print(f"Server endpoint: http://{args.host}:{args.port}/mcp")
         server.run(transport='streamable-http')
     else:
         print("Starting CFTC COT MCP Server (stdio transport)...")

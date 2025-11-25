@@ -26,7 +26,7 @@ from tools import (
 load_dotenv()
 
 
-def create_server(port: int = 5222, debug: bool = False):
+def create_server(port: int = 5222, host: str = '127.0.0.1', debug: bool = False):
     """Create and configure MCP server."""
     
     # Get server secret from environment (optional)
@@ -36,6 +36,7 @@ def create_server(port: int = 5222, debug: bool = False):
     mcp = NorthMCPServer(
         name="Futures Prices",
         port=port,
+        host=host,
         server_secret=server_secret,
         debug=debug
     )
@@ -131,6 +132,12 @@ def main():
         help='Port for streamable-http transport (default: 5222)'
     )
     parser.add_argument(
+        '--host',
+        type=str,
+        default='127.0.0.1',
+        help='Server host (default: 127.0.0.1, use 0.0.0.0 for all interfaces)'
+    )
+    parser.add_argument(
         '--debug',
         action='store_true',
         help='Enable debug mode'
@@ -139,12 +146,12 @@ def main():
     args = parser.parse_args()
     
     # Create server
-    server = create_server(port=args.port, debug=args.debug)
+    server = create_server(port=args.port, host=args.host, debug=args.debug)
     
     # Start server
     if args.transport == 'streamable-http':
-        print(f"Starting Futures Prices MCP Server on port {args.port}...")
-        print(f"Server endpoint: http://localhost:{args.port}/mcp")
+        print(f"Starting Futures Prices MCP Server on {args.host}:{args.port}...")
+        print(f"Server endpoint: http://{args.host}:{args.port}/mcp")
         server.run(transport='streamable-http')
     else:
         print("Starting Futures Prices MCP Server (stdio transport)...")
