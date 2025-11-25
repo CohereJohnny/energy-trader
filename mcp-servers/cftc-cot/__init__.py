@@ -1,0 +1,2 @@
+# CFTC COT MCP Server
+

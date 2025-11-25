@@ -1,0 +1,76 @@
+# Edge Case Test Fixtures for CFTC Parser
+
+# Case 1: Missing values represented as "."
+MISSING VALUES MARKET - TEST EXCHANGE                                                                                                Code-00002A
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :     1,000:       500        400        100          .         25          .          0          .         50          .         10:        5        10
+Old  :     1,000:       500        400        100          .         25          .          0          .         50          .         10:        5        10
+Other:         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+
+# Case 2: Zero Open Interest
+ZERO OI MARKET - TEST EXCHANGE                                                                                                       Code-00003A
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+Old  :         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+Other:         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+
+# Case 3: Negative changes
+NEGATIVE CHANGES MARKET - TEST EXCHANGE                                                                                               Code-00004A
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :     1,000:       500        400        100         50         25         10          0          5         50         25         10:        5        10
+Old  :     1,000:       500        400        100         50         25         10          0          5         50         25         10:        5        10
+Other:         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+     :          :                                                                                                                        :
+     :          :    Changes in Commitments from:       December 25, 2024                                                               :
+     :      -100:       -50        -40        -10         -5         -2         -1          0         -1         -5         -2         -1:       -1        -1
+
+# Case 4: Very large numbers
+LARGE NUMBERS MARKET - TEST EXCHANGE                                                                                                  Code-00005A
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :10,000,000: 5,000,000  4,000,000    500,000    250,000    125,000     50,000          0     25,000    250,000    125,000     50,000:   25,000    50,000
+
+# Case 5: Missing header code
+NO CODE MARKET - TEST EXCHANGE                                                                                                       
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :     1,000:       500        400        100         50         25         10          0          5         50         25         10:        5        10
+

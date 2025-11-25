@@ -1,0 +1,9 @@
+# MCP Server Dependencies
+# Note: north-mcp-python-sdk must be installed separately from GitHub:
+#   uv pip install git+ssh://git@github.com/cohere-ai/north-mcp-python-sdk.git
+#   or
+#   pip install git+ssh://git@github.com/cohere-ai/north-mcp-python-sdk.git
+
+psycopg2-binary>=2.9.0
+python-dotenv>=1.0.0
+

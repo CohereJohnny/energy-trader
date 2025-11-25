@@ -1,0 +1,36 @@
+MINIMAL MARKET - TEST EXCHANGE                                                                                                      Code-00001A
+Disaggregated Commitments of Traders - Futures Only, January 01, 2025                                                                                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :                                              Reportable Positions                                                      :   Nonreportable
+     :          :  Producer/Merchant/ :                                :                                :                                :     Positions
+     :   Open   :   Processor/User    :          Swap Dealers          :         Managed Money          :       Other Reportables        :
+     : Interest :   Long   :  Short   :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long   :  Short   :Spreading :   Long  :  Short
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+     :          :(1000 barrels)                                                                                                          :
+     :          :    Positions                                                                                                           :
+All  :     1,000:       500        400        100         50         25         10          0          5         50         25         10:        5        10
+Old  :     1,000:       500        400        100         50         25         10          0          5         50         25         10:        5        10
+Other:         0:         0          0          0          0          0          0          0          0          0          0          0:        0         0
+     :          :                                                                                                                        :
+     :          :    Changes in Commitments from:       December 25, 2024                                                               :
+     :        50:        25         20         10          5          2          1          0          1          5          2          1:        1         1
+     :          :                                                                                                                        :
+     :          :    Percent of Open Interest Represented by Each Category of Trader                                                     :
+All  :     100.0:      50.0       40.0       10.0        5.0        2.5        1.0        0.0        0.5        5.0        2.5        1.0:      0.5       1.0
+Old  :     100.0:      50.0       40.0       10.0        5.0        2.5        1.0        0.0        0.5        5.0        2.5        1.0:      0.5       1.0
+Other:     100.0:       0.0        0.0        0.0        0.0        0.0        0.0        0.0        0.0        0.0        0.0        0.0:      0.0       0.0
+     :          :                                                                                                                        :
+     :          :    Number of Traders in Each Category                                                                                  :
+All  :        10:         5          4          2          1          1          1          0          1          1          1          1:
+Old  :        10:         5          4          2          1          1          1          0          1          1          1          1:
+Other:         0:         0          0          0          0          0          0          0          0          0          0          0:
+     :-------------------------------------------------------------------------------------------------------------------------------------------------------
+     :             Percent of Open Interest Held by the Indicated Number of the Largest Traders
+     :                          By Gross Position                       By Net Position
+     :               4 or Less Traders     8 or Less Traders     4 or Less Traders     8 or Less Traders
+     :                 Long:     Short       Long      Short:      Long      Short       Long      Short
+     :----------------------------------------------------------------------------------------------------
+All  :                 25.0       20.0       50.0       40.0       10.0        5.0       20.0       15.0
+Old  :                 25.0       20.0       50.0       40.0       10.0        5.0       20.0       15.0
+Other:                  0.0        0.0        0.0        0.0        0.0        0.0        0.0        0.0
+

@@ -1,5 +1,12 @@
 ## ADDED Requirements
 
+### Requirement: Containerized PostgreSQL Database
+The system SHALL use a containerized PostgreSQL database instance for storing futures prices data. The database SHALL be run using Docker Compose for easy setup and portability.
+
+#### Scenario: Database container startup
+- **WHEN** Docker Compose is started
+- **THEN** PostgreSQL container is created and accessible on the configured port
+
 ### Requirement: Futures Prices Database Schema
 The system SHALL store normalized futures prices data in a PostgreSQL database with the following structure:
 - A `commodities` table storing commodity metadata (BRENT, WTI, GASOIL, RBOB)

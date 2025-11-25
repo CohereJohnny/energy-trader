@@ -1,0 +1,15 @@
+[project]
+name = "cftc-cot-mcp-server"
+version = "0.1.0"
+description = "MCP server for CFTC Commitment of Traders data"
+requires-python = ">=3.10"
+dependencies = [
+    "north-mcp-python-sdk @ git+ssh://git@github.com/cohere-ai/north-mcp-python-sdk.git",
+    "psycopg2-binary>=2.9.0",
+    "python-dotenv>=1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+

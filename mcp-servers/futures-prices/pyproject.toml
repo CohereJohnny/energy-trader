@@ -1,0 +1,20 @@
+[project]
+name = "futures-prices-mcp-server"
+version = "0.1.0"
+description = "MCP server for querying historical and current futures prices"
+requires-python = ">=3.11"
+dependencies = [
+    "psycopg2-binary>=2.9.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+# Note: north-mcp-python-sdk is installed from git
+# Install with: uv pip install git+ssh://git@github.com/cohere-ai/north-mcp-python-sdk.git
+

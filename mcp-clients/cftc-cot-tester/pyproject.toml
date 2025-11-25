@@ -1,0 +1,14 @@
+[project]
+name = "cftc-cot-tester"
+version = "0.1.0"
+description = "MCP client and test suite for CFTC COT MCP Server"
+requires-python = ">=3.10"
+dependencies = [
+    "psycopg2-binary>=2.9.0",
+    "python-dotenv>=1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+

@@ -1,0 +1,13 @@
+{
+  "name": "Futures Prices MCP Server",
+  "transport": {
+    "type": "streamable-http",
+    "url": "http://localhost:5222/mcp"
+  },
+  "authentication": {
+    "type": "bearer",
+    "token": ""
+  },
+  "description": "MCP server for querying historical and current futures prices"
+}
+

@@ -1,0 +1,8 @@
+# Python Dependencies for Energy Trader
+
+# Database
+psycopg2-binary>=2.9.0
+
+# Future: MCP Server dependencies will be added in Sprint 2
+# north-mcp-python-sdk (to be added)
+

@@ -3,6 +3,7 @@ The AI agent needs to query historical and current futures prices for energy com
 
 ## What Changes
 - **BREAKING**: None (new capability)
+- Set up containerized PostgreSQL database using Docker Compose
 - Create PostgreSQL schema for storing normalized futures prices data
 - Parse contract names using CME Group month codes (https://www.cmegroup.com/month-codes.html) from CSV column headers
 - Load CSV data (BR_CUR.csv, WTI_CUR.csv, GO_CUR.csv, RB_CUR.csv) into PostgreSQL with proper month code interpretation
@@ -20,5 +21,5 @@ The AI agent needs to query historical and current futures prices for energy com
   - New MCP server implementation
   - Database schema and migration scripts
   - Data loading scripts
-- Dependencies: PostgreSQL database, North MCP Python SDK
+- Dependencies: Docker, PostgreSQL database (containerized), North MCP Python SDK
 
